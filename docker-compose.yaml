@@ -1,0 +1,24 @@
+volumes:
+  simun-docker-volume:
+
+services:
+  simun-db:
+    image: mongo
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: simun
+      MONGO_INITDB_ROOT_PASSWORD: simun
+    ports:
+      - 27017:27017
+    volumes:
+      - simun-docker-volume:/data/db
+
+  simun-db-control-panel:
+    image: mongo-express
+    restart: always
+    ports:
+      - 3000:8081
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: simun
+      ME_CONFIG_MONGODB_ADMINPASSWORD: simun
+      ME_CONFIG_MONGODB_URL: mongodb://simun:simun@simun-db:27017/

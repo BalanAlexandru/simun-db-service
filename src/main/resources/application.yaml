@@ -1,0 +1,14 @@
+server:
+  port: 8082
+  error:
+    include-stacktrace: never
+
+spring:
+  data:
+    mongodb:
+      port: 27017
+      uri: mongodb://simun:simun@localhost:27017/
+      database: simun
+
+  application:
+    name: simun-db-service
